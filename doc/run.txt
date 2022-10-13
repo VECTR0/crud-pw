@@ -1,0 +1,17 @@
+https://nodejs.org/en/
+install yarn: npm install --global yarn
+axios: npm install axios
+react dotenv: npm install dotenv --save
+react router: npm install react-router-dom@6
+
+1) from backend: flask --app app run
+2) from frontend:
+    2.1) npm install
+    2.2) npm start
+3) 4 widoki:
+    http://localhost:3000/v1
+    http://localhost:3000/v2
+    http://localhost:3000/v3
+    http://localhost:3000/v4
+
+4) api z flaska (.env): http://localhost:3000/api/...

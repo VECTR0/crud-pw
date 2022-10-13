@@ -1,0 +1,15 @@
+.git
+
+/backend/__pycache__
+
+/frontend/node_modules
+/frontend/README.md
+/frontend/node_modules
+/frontend/coverage
+/frontend/build
+/frontend/.DS_Store
+/frontend/.env
+/frontend/npm-debug.log*
+/frontend/yarn-debug.log*
+/frontend/yarn-error.log*
+/frontend/.gitignore
