@@ -1,10 +1,11 @@
 .git
 
-/backend/__pycache__
+__pycache__/
+pytest_cache/
+.pytest_cache/
 
 /frontend/node_modules
 /frontend/README.md
-/frontend/node_modules
 /frontend/coverage
 /frontend/build
 /frontend/.DS_Store

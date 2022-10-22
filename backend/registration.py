@@ -1,7 +1,8 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 import datetime
 
-# TODO: jak ma wygladac tabela
+# TODO: jak ma wygladac tabela?
+# TODO: przekazywac obiekt do db zamist slownika??
 
 
 class Registration:

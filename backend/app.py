@@ -1,9 +1,10 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 from flask import Flask, jsonify, request
 import os
 import dibi
 
 CONST_DB_DILENAME: str = "database.db"
+# CONST_DB_DILENAME = os.getenv('REACT_APP_CONST_DB_DILENAME')
 
 API_REG_ID = os.getenv('REACT_APP_API_REG_ID')
 API_REG_NAME = os.getenv('REACT_APP_API_REG_NAME')

@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 import sqlite3
 
 from registration import Registration
@@ -9,6 +9,8 @@ class Database:
         self.filename = filename
 
     def __connect_to_db(self) -> sqlite3.Connection:
+        
+        
         conn = sqlite3.connect(self.filename)
         return conn
 
@@ -29,11 +31,13 @@ class Database:
         try:
             conn = self.__connect_to_db()
             cur = conn.cursor()
+            print(f'argument:{registration}')
             cur.execute("INSERT INTO registration (date_1, date_2, who, what) values (?, ?, ?, ?)",
                         (registration['date_1'], registration['date_2'], registration['who'], registration['what']))
 
             conn.commit()
             inserted_registration = self.get_registration_by_id(cur.lastrowid)
+            print(f'inserted:{inserted_registration}')
         except:
             conn.rollback()
 
@@ -108,7 +112,6 @@ class Database:
                 registration["what"] = i["what"]
                 registrations.append(registration)
 
-            print("dupa")
             print(registrations)
         except:
             registrations = []
@@ -129,7 +132,7 @@ class Database:
 
             updated_registration = self.get_registration_by_id(
                 registartion_id)
-            # print(updated_registration)
+            print(updated_registration)
 
         except:
             conn.rollback()

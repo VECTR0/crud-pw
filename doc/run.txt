@@ -1,17 +1,25 @@
-https://nodejs.org/en/
-install yarn: npm install --global yarn
-axios: npm install axios
-react dotenv: npm install dotenv --save
-react router: npm install react-router-dom@6
+frontend:
+    https://nodejs.org/en/
+    install yarn: npm install --global yarn
+    axios: npm install axios
+    react dotenv: npm install dotenv --save
+    react router: npm install react-router-dom@6
 
-1) from backend: flask --app app run
-2) from frontend:
-    2.1) npm install
-    2.2) npm start
-3) 4 widoki:
-    http://localhost:3000/v1
-    http://localhost:3000/v2
-    http://localhost:3000/v3
-    http://localhost:3000/v4
+test:
+    1) pip install -U pytest; pip install pytest-xdist
+    2) from backend: pip install -r requirements.txt
+    3) obojetnie skad: pytest
+        3.1) test z wlaczonym printowaniem: pytest -s
 
-4) api z flaska (.env): http://localhost:3000/api/...
+run:
+    1) from backend: flask --app app run
+    2) from frontend:
+        2.1) npm install
+        2.2) npm start
+    3) 4 widoki:
+        http://localhost:3000/v1
+        http://localhost:3000/v2
+        http://localhost:3000/v3
+        http://localhost:3000/v4
+
+    4) api z flaska (.env): http://localhost:5000/api/...
