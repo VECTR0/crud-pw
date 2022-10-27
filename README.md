@@ -18,8 +18,8 @@ W pliku `.env` znajduje się konfiguracja systemu.
 
 ## Linux
 
-Uruchom `runAPI.sh` oraz `runWWW.sh`
+Uruchom `run.sh`
 
 ## Windows
 
-Uruchom `runAPI.bat` oraz `runWWW.bat`
+Uruchom `run.bat`
