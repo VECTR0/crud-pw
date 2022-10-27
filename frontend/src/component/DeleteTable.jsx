@@ -11,6 +11,7 @@ const DeleteTable = (props) => {
       console.log(res.data);
       if (res.status === 200) {
         setMsg("Deleted")
+        window.location.reload(false);
       } else {
         setMsg("Not Deleted")
       }
