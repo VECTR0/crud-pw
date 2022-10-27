@@ -9,8 +9,7 @@ class Database:
         self.filename = filename
 
     def __connect_to_db(self) -> sqlite3.Connection:
-        
-        
+
         conn = sqlite3.connect(self.filename)
         return conn
 
@@ -118,15 +117,28 @@ class Database:
 
         return registrations
 
+    @staticmethod
+    def __update_or_default(reg, key):
+        if key not in reg.keys():
+            reg[key] = None
+
     def update_registration(self, registration, registartion_id):
+        Database.__update_or_default(registration, 'date_1')
+        Database.__update_or_default(registration, 'date_2')
+        Database.__update_or_default(registration, 'who')
+        Database.__update_or_default(registration, 'what')
+        print(registration)
         updated_registration = {}
         try:
 
             conn = self.__connect_to_db()
             cur = conn.cursor()
 
-            cur.execute("UPDATE registration SET date_1 = ?, date_2 = ?, who = ?, what = ? WHERE registration_id = ?",
+            cur.execute("UPDATE registration SET date_1 = coalesce(?, date_1), date_2 = coalesce(?, date_2), who = coalesce(?, who), what = coalesce(?, what) WHERE registration_id = ?",
                         (registration['date_1'], registration['date_2'], registration['who'], registration['what'], registartion_id))
+
+            # cur.execute("UPDATE registration SET date_1 = ?, date_2 = ?, who = ?, what = ? WHERE registration_id = ?",
+            # (registration['date_1'], registration['date_2'], registration['who'], registration['what'], registartion_id))
 
             conn.commit()
 

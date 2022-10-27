@@ -14,11 +14,10 @@ const V1 = (props) => {
         setMsg("")
 
         if (name.length !== 0 && surname.length !== 0 && problem.length !== 0) {
-
-            const date = Date.now()
+            var todayDate = new Date().toISOString().slice(0, 10);
             axios.post(props.api, {
-                date_1: date,
-                date_2: date,
+                date_1: todayDate,
+                date_2: todayDate,
                 who: `${name} ${surname}`,
                 what: problem,
             }).then(res => {
