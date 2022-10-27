@@ -42,3 +42,11 @@ def test_should_get_one_element_bigger_dict_after_correct_insertion():
     db.insert_registration(new_reg)
     after = db.get_registrations()
     assert len(before)+1==len(after)
+
+def test_should_get_one_element_smaller_dict_after_correct_deletion():
+    db = Database(CONST_DB_DILENAME)
+    before = db.get_registrations()
+    db.delete_registration(1)
+    after = db.get_registrations()
+    assert len(before)-1==len(after)
+
