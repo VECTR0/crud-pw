@@ -174,7 +174,7 @@ def test_should_not_update_record_for_incorrect_id_type_update_parameter():
     assert cur_reg['what'] == 'Awaria 2'
     new_reg = {'date_1':cur_reg['date_1'],'date_2':cur_reg['date_2'], 'who':'Marek Nowakowski','what':'Awaria 1'}
     
-    db.update_registration(new_reg, 'Marek Nowakowski')
+    db.update_registration(new_reg, 'Jan Kowalski')
     cur_reg = db.get_registration_by_id(1)
     
     #assert
@@ -189,14 +189,17 @@ def test_update_record_for_not_existng_id_update_parameter():
 
     #act
     cur_reg = db.get_registration_by_id(1)
+    old_reg = db.get_registration_by_id(100)
     new_reg = {'date_1':cur_reg['date_1'],'date_2':cur_reg['date_2'], 'who':'Marek Nowakowski','what':'Awaria 3'}
     
     db.update_registration(new_reg, 100)
+    reg = db.get_registration_by_id(100)
     regs = db.get_registrations()
     after = len(regs)
     
     #assert
     assert after == before
+    assert len(old_reg) == len(reg) == 0
 
 def test_should_get_one_element_smaller_dict_after_correct_deletion():
     #arrange
