@@ -43,6 +43,16 @@ def test_should_get_one_element_bigger_dict_after_correct_insertion():
     after = db.get_registrations()
     assert len(before)+1==len(after)
 
+def test_should_get_10_element_bigger_dict_after_10_correct_insertions():
+    db = Database(CONST_DB_DILENAME)
+    before = db.get_registrations()
+    date=datetime.now()
+    for i in range(10):
+        new_reg ={'date_1':date,'date_2':date, 'who':'Jan Nowak','what':f'{i}'}
+        db.insert_registration(new_reg)
+    after = db.get_registrations()
+    assert len(before)+10==len(after)
+
 def test_should_get_correct_record_for_correct_reading_parameter():
     db = Database(CONST_DB_DILENAME)
     currentRegistration = db.get_registration_by_id(1)
