@@ -148,7 +148,7 @@ def test_should_get_empty_list_of_records_for_incorrect_name_parameter():
     assert len(cur_regs)== 0
 
 def test_should_update_record_for_correct_update_parameters():
-    #arrange
+    #arrange﻿
     db = Database(CONST_DB_DILENAME)
 
     #act
@@ -158,6 +158,23 @@ def test_should_update_record_for_correct_update_parameters():
     new_reg = {'date_1':cur_reg['date_1'],'date_2':cur_reg['date_2'], 'who':'Jan Kowalski','what':'Awaria 2'}
     
     db.update_registration(new_reg, 1)
+    cur_reg = db.get_registration_by_id(1)
+    
+    #assert
+    assert cur_reg['who'] == 'Jan Kowalski'
+    assert cur_reg['what'] == 'Awaria 2'
+
+def test_should_not_update_record_for_incorrect_id_update_parameter():
+    #arrange﻿
+    db = Database(CONST_DB_DILENAME)
+
+    #act
+    cur_reg = db.get_registration_by_id(1)
+    assert cur_reg['who'] == 'Jan Kowalski'
+    assert cur_reg['what'] == 'Awaria 2'
+    new_reg = {'date_1':cur_reg['date_1'],'date_2':cur_reg['date_2'], 'who':'Marek Nowakowski','what':'Awaria 3'}
+    
+    db.update_registration(new_reg, 'Marek Nowakowski')
     cur_reg = db.get_registration_by_id(1)
     
     #assert
