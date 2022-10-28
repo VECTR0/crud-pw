@@ -83,16 +83,38 @@ def test_should_get_10_element_bigger_dict_after_10_correct_insertions():
     #assert
     assert len(before)+10==len(after)
 
-def test_should_get_correct_record_for_correct_reading_parameter():
+def test_should_get_correct_record_for_correct_id_parameter():
     #arrange
     db = Database(CONST_DB_DILENAME)
     
     #act
-    currentRegistration = db.get_registration_by_id(1)
+    cur_reg = db.get_registration_by_id(1)
 
     #assert
-    assert currentRegistration['who'] == 'Marek Nowakowski'
-    assert currentRegistration['what'] == 'Awaria 1'
+    assert cur_reg['who'] == 'Marek Nowakowski'
+    assert cur_reg['what'] == 'Awaria 1'
+
+def test_should_get_correct_record_for_correct_name_parameter():
+    #arrange
+    db = Database(CONST_DB_DILENAME)
+
+    #act
+    cur_regs = db.get_registartions_by_name('Marek Nowakowski')
+    cur_reg = cur_regs[0]
+
+    #assert
+    assert cur_reg['who'] == 'Marek Nowakowski'
+    assert cur_reg['what'] == 'Awaria 1'
+
+def test_should_get_empty_list_of_records_for_incorrect_name_parameter():
+    #arrange
+    db = Database(CONST_DB_DILENAME)
+
+    #act
+    cur_regs = db.get_registartions_by_name('Andrzej Wirowski')
+
+    #assert
+    assert len(cur_regs)== 0
 
 def test_should_update_record_for_correct_update_parameters():
     #arrange
