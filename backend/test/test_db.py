@@ -106,7 +106,6 @@ def test_should_get_KeyError_for_incorrect_id_parameter():
         assert cur_reg['what'] == 'Awaria 1'
 
 
-
 def test_should_get_correct_record_for_correct_name_parameter():
     #arrange
     db = Database(CONST_DB_DILENAME)
@@ -118,6 +117,15 @@ def test_should_get_correct_record_for_correct_name_parameter():
     #assert
     assert cur_reg['who'] == 'Marek Nowakowski'
     assert cur_reg['what'] == 'Awaria 1'
+
+def test_should_get_IndexError_for_incorrect_type_name_parameter():
+    #arrange
+    db = Database(CONST_DB_DILENAME)
+
+    #act
+    with pytest.raises(IndexError):  
+        cur_regs = db.get_registartions_by_name(1)
+        cur_reg = cur_regs[0]
 
 def test_should_get_empty_list_of_records_for_incorrect_name_parameter():
     #arrange
