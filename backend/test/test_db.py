@@ -68,6 +68,20 @@ def test_should_get_one_element_bigger_dict_after_correct_insertion():
     #assert
     assert len(before)+1==len(after)
 
+def test_shouldnot_get_one_element_bigger_dict_after_incorrect_insertion():
+    #arrange
+    db = Database(CONST_DB_DILENAME)
+    before = db.get_registrations()
+    date=datetime.now()
+    
+    #act
+    new_reg ={'date_1':date,'date_2':date}
+    db.insert_registration(new_reg)
+    after = db.get_registrations()
+    
+    #assert
+    assert len(before)==len(after)
+    
 def test_should_get_10_element_bigger_dict_after_10_correct_insertions():
     #arrange
     db = Database(CONST_DB_DILENAME)
