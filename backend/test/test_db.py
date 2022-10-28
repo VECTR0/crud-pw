@@ -105,6 +105,16 @@ def test_should_get_KeyError_for_incorrect_id_parameter():
         assert cur_reg['who'] == 'Marek Nowakowski'
         assert cur_reg['what'] == 'Awaria 1'
 
+def test_should_get_KeyError_for_incorrect_type_of_id_parameter():
+    #arrange
+    db = Database(CONST_DB_DILENAME)
+    
+    #act
+    with pytest.raises(KeyError):   
+        cur_reg = db.get_registration_by_id("Marek Nowakowski")
+    #assert
+        assert cur_reg['who'] == 'Marek Nowakowski'
+        assert cur_reg['what'] == 'Awaria 1'
 
 def test_should_get_correct_record_for_correct_name_parameter():
     #arrange
