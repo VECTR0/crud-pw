@@ -6,15 +6,15 @@ Prototyp systemu dla serwisu komputerowego. Umożliwia stworzenie zgłoszenia, w
 
 ## Linux
 
-Uruchom skrypt install.sh
+Uruchom skrypt `install.sh`
 
 ## Windows
 
-Uruchom skrypt install.bat
+Uruchom skrypt `install.bat`
 
 ### Uruchamianie
 
-W pliku `.env` znajduje się konfiguracja systemu.
+W pliku `.env` znajduje się konfiguracja systemu. Standardowa konfiguracja to `:3000` frontend oraz `:5000` backend.
 
 ## Linux
 
