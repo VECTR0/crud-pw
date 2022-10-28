@@ -3,6 +3,7 @@
 __pycache__/
 pytest_cache/
 .pytest_cache/
+backend/database.db
 
 /frontend/node_modules
 /frontend/README.md
