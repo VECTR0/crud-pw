@@ -28,82 +28,126 @@ def test_mock():
     thing.method.assert_called_with(3, 4, 5, key='value')
 
 
-def test_delete_all():
+def test_should_get_zero_registrations_after_total_deletion():
+    #arrange
     db = Database(CONST_DB_DILENAME)
+    
+    #act
     db.delete_all()
     regs = db.get_registrations()
+    
+    #assert
     assert len(regs) == 0
 
 def test_delete_all_for_10_reg():
+    #arrange
     db = Database(CONST_DB_DILENAME)
     date=datetime.now()
+    
+    #act
     for i in range(10):
         new_reg ={'date_1':date,'date_2':date, 'who':'Jan Nowak','what':f'{i}'}
         db.insert_registration(new_reg)
     db.delete_all()
     regs = db.get_registrations()
+    
+    #assert
     assert len(regs) == 0
 
 def test_should_get_one_element_bigger_dict_after_correct_insertion():
+    #arrange
     db = Database(CONST_DB_DILENAME)
     before = db.get_registrations()
     date=datetime.now()
+    
+    #act
     new_reg ={'date_1':date,'date_2':date, 'who':'Marek Nowakowski','what':'Awaria 1'}
     db.insert_registration(new_reg)
     after = db.get_registrations()
+    
+    #assert
     assert len(before)+1==len(after)
 
 def test_should_get_10_element_bigger_dict_after_10_correct_insertions():
+    #arrange
     db = Database(CONST_DB_DILENAME)
     before = db.get_registrations()
     date=datetime.now()
+    
+    #act
     for i in range(10):
         new_reg ={'date_1':date,'date_2':date, 'who':'Jan Nowak','what':f'{i}'}
         db.insert_registration(new_reg)
     after = db.get_registrations()
+    
+    #assert
     assert len(before)+10==len(after)
 
 def test_should_get_correct_record_for_correct_reading_parameter():
+    #arrange
     db = Database(CONST_DB_DILENAME)
+    
+    #act
     currentRegistration = db.get_registration_by_id(1)
+
+    #assert
     assert currentRegistration['who'] == 'Marek Nowakowski'
     assert currentRegistration['what'] == 'Awaria 1'
 
 def test_should_update_record_for_correct_update_parameters():
+    #arrange
     db = Database(CONST_DB_DILENAME)
+
+    #act
     cur_reg = db.get_registration_by_id(1)
     assert cur_reg['who'] == 'Marek Nowakowski'
     assert cur_reg['what'] == 'Awaria 1'
     new_reg = {'date_1':cur_reg['date_1'],'date_2':cur_reg['date_2'], 'who':'Jan Kowalski','what':'Awaria 2'}
     
     db.update_registration(new_reg, 1)
-
     cur_reg = db.get_registration_by_id(1)
+    
+    #assert
     assert cur_reg['who'] == 'Jan Kowalski'
     assert cur_reg['what'] == 'Awaria 2'
 
 def test_should_get_one_element_smaller_dict_after_correct_deletion():
+    #arrange
     db = Database(CONST_DB_DILENAME)
     before = db.get_registrations()
+    
+    #act
     db.delete_registration(1)
     after = db.get_registrations()
+    
+    #assert
     assert len(before)-1==len(after)
 
 def test_should_get_10_element_smaller_dict_after_10_correct_deletions():
+    #arrange
     db = Database(CONST_DB_DILENAME)
     date=datetime.now()
     for i in range(10):
         new_reg ={'date_1':date,'date_2':date, 'who':'Adam Nowak','what':f'{i}'}
         db.insert_registration(new_reg)
     before = db.get_registrations()
+    
+    #act
     for i in range(10):
         db.delete_registration(2+i)
     after = db.get_registrations()
+    
+    #assert
     assert len(before)-10==len(after)
 
 def test_should_get_0_elements_after_trying_to_delete_from_empty_regdb():
+    #arrange
     db = Database(CONST_DB_DILENAME)
     db.delete_all()
+    
+    #act
     db.delete_registration(1)
     after = db.get_registrations()
+    
+    #assert
     assert 0==len(after)
