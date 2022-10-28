@@ -164,7 +164,7 @@ def test_should_update_record_for_correct_update_parameters():
     assert cur_reg['who'] == 'Jan Kowalski'
     assert cur_reg['what'] == 'Awaria 2'
 
-def test_should_not_update_record_for_incorrect_id_update_parameter():
+def test_should_not_update_record_for_incorrect_id_type_update_parameter():
     #arrange﻿
     db = Database(CONST_DB_DILENAME)
 
@@ -172,7 +172,7 @@ def test_should_not_update_record_for_incorrect_id_update_parameter():
     cur_reg = db.get_registration_by_id(1)
     assert cur_reg['who'] == 'Jan Kowalski'
     assert cur_reg['what'] == 'Awaria 2'
-    new_reg = {'date_1':cur_reg['date_1'],'date_2':cur_reg['date_2'], 'who':'Marek Nowakowski','what':'Awaria 3'}
+    new_reg = {'date_1':cur_reg['date_1'],'date_2':cur_reg['date_2'], 'who':'Marek Nowakowski','what':'Awaria 1'}
     
     db.update_registration(new_reg, 'Marek Nowakowski')
     cur_reg = db.get_registration_by_id(1)
@@ -180,6 +180,23 @@ def test_should_not_update_record_for_incorrect_id_update_parameter():
     #assert
     assert cur_reg['who'] == 'Jan Kowalski'
     assert cur_reg['what'] == 'Awaria 2'
+
+def test_update_record_for_not_existng_id_update_parameter():
+    #arrange﻿
+    db = Database(CONST_DB_DILENAME)
+    regs = db.get_registrations()
+    before = len(regs)
+
+    #act
+    cur_reg = db.get_registration_by_id(1)
+    new_reg = {'date_1':cur_reg['date_1'],'date_2':cur_reg['date_2'], 'who':'Marek Nowakowski','what':'Awaria 3'}
+    
+    db.update_registration(new_reg, 100)
+    regs = db.get_registrations()
+    after = len(regs)
+    
+    #assert
+    assert after == before
 
 def test_should_get_one_element_smaller_dict_after_correct_deletion():
     #arrange
