@@ -26,4 +26,4 @@ Uruchom `run.bat`
 
 ### Użytkowanie
 
-Po uruchomieniu otworzy się okno przeglądarki `http://localhost:3000/`. Do adresu URL dodajemy `v1-4`, które są widokami: klienta, zarządcy, oraz technika. Klient może dodać zgłoszenie, zarządca zmodyfikować zgłoszenie klienta lub ewentualnie usunąć zgłoszenie.
+Po uruchomieniu otworzy się okno przeglądarki `http://localhost:3000/`. Do adresu URL dodajemy `v1-4`, które są widokami: klienta, dwa zarządcy, oraz technika. Klient może dodać zgłoszenie, zarządca może sprawdzić wszystkie zgłoszenia danego klienta, zmodyfikować zgłoszenie klienta lub ewentualnie usunąć zgłoszenie, a technik wyszukać zgłoszenie po jego identyfikatorze.
