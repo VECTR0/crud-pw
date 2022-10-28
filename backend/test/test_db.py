@@ -34,7 +34,7 @@ def test_delete_all():
     regs = db.get_registrations()
     assert len(regs) == 0
 
-def test_delete_all_for_10_elem():
+def test_delete_all_for_10_reg():
     db = Database(CONST_DB_DILENAME)
     date=datetime.now()
     for i in range(10):
@@ -89,4 +89,9 @@ def test_should_get_one_element_smaller_dict_after_correct_deletion():
     after = db.get_registrations()
     assert len(before)-1==len(after)
 
-
+def test_should_get_0_elements_after_trying_to_delete_from_empty_regdb():
+    db = Database(CONST_DB_DILENAME)
+    db.delete_all()
+    db.delete_registration(1)
+    after = db.get_registrations()
+    assert 0==len(after)
