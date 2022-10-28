@@ -89,6 +89,18 @@ def test_should_get_one_element_smaller_dict_after_correct_deletion():
     after = db.get_registrations()
     assert len(before)-1==len(after)
 
+def test_should_get_10_element_smaller_dict_after_10_correct_deletions():
+    db = Database(CONST_DB_DILENAME)
+    date=datetime.now()
+    for i in range(10):
+        new_reg ={'date_1':date,'date_2':date, 'who':'Adam Nowak','what':f'{i}'}
+        db.insert_registration(new_reg)
+    before = db.get_registrations()
+    for i in range(10):
+        db.delete_registration(2+i)
+    after = db.get_registrations()
+    assert len(before)-10==len(after)
+
 def test_should_get_0_elements_after_trying_to_delete_from_empty_regdb():
     db = Database(CONST_DB_DILENAME)
     db.delete_all()
